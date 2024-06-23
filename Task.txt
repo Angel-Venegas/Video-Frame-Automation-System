@@ -1,0 +1,224 @@
+This project involves creating a script to import data from two different files, parsing and processing the data to 
+match shareholder requests, and exporting the processed data into a CSV file.
+
+This project aims to automate the process of importing, parsing, and processing data from two different sources 
+(Baselight_export.txt (Local Paths) and Xytech.txt (facility Paths)) to match specific shareholder requests.
+
+
+The primary goal of this project is to replace local file system paths with facility storage paths to address bandwidth issues faced by color correctors who prefer using local storage. Here’s a detailed explanation of why this is important and how it impacts the workflow:
+
+Background
+    Color Correction Process:
+        Color correction involves adjusting the color properties of video footage to achieve the desired visual look. This is a resource-intensive process requiring high performance and low latency.
+        Color correctors often work with high-resolution video files, which can be large in size.
+
+Local Storage vs. Facility Storage:
+    Local Storage: Refers to the storage devices directly connected to the color corrector’s workstation. This could be internal drives or directly attached external drives.
+        Advantages:
+            Low Latency: Faster access to files due to proximity to the workstation.
+            High Performance: Reduced lag and higher throughput, crucial for real-time color correction.
+        Disadvantages:
+            Limited Capacity: May not have enough storage space for all project files.
+            Scalability Issues: Difficult to scale up as projects grow larger.
+    Facility Storage: Refers to centralized storage solutions managed by the facility, often network-attached storage (NAS) or storage area networks (SAN).
+        Advantages:
+            Centralized Management: Easier to manage and back up data.
+            Scalability: Can be expanded to accommodate larger projects.
+        Disadvantages:
+            Bandwidth Issues: Accessing files over the network can be slower due to network congestion or limited bandwidth, impacting real-time processing.
+        
+The Problem
+    Bandwidth Issues:
+        Color correctors face performance bottlenecks when accessing large video files over the network.
+        Network congestion or insufficient bandwidth can cause delays, making real-time color correction challenging.
+The Solution
+    Replacing Local File System Paths with Facility Storage Paths:
+        Objective: Move the file references from local paths used during color correction to facility storage paths where files are eventually stored or processed.
+        Steps Involved:
+            Identify Local Paths: Extract paths from the local storage system used by color correctors (Baselight system).
+            Match with Facility Paths: Find corresponding paths in the facility storage system (Xytech system).
+            Replace Paths: Replace the local paths in the data with the facility paths to ensure files are referenced correctly in the centralized storage system.
+            Export Data: Output the updated paths and any necessary metadata to a CSV file for further processing or archival.
+Impact
+    Improved Workflow:
+        Performance: Color correctors continue to work with local storage during the editing phase, ensuring high performance.
+        Centralized Storage: Once the color correction is done, files are referenced using facility paths, facilitating centralized storage management.
+        Bandwidth Management: By separating the local editing phase from the final storage phase, bandwidth issues are mitigated, allowing for smoother operations.
+
+Example
+    Consider a color corrector working on a high-resolution video file stored locally at:
+        /baselightfilesystem1/Dune2/reel1/partA/1920x1080
+    
+        During the editing phase, this local path ensures quick access and high performance.
+
+    After editing, this path needs to be replaced with a facility storage path for central management:
+        /hpsans13/production/Dune2/reel1/partA/1920x1080
+    
+    The automated script will perform this replacement, ensuring that the final data points to the centralized storage path.
+    This means that there won't have to be a person who first matches all of the frames in order to fix in the correct local file paths and have to
+    then match it all in the facility paths as well.
+
+
+
+
+
+Here's a detailed breakdown of what the script needs to do:
+
+Steps to Automate
+
+1. Import Files:
+    Import data from Baselight_export.txt. (Local Storage)
+    Import data from Xytech.txt. (Facility Storage)
+
+2. Parse Data:
+    Parse the imported data to extract relevant information.
+    Handle potential data errors such as <null> or <err>.
+
+3. Process Data:
+    Perform computations to match the shareholder's requests.
+    Replace file system paths from local Baselight to facility storage paths.
+    Ensure that frames and frame ranges are shown in consecutive numerical order.
+    Ensure that frames reflect their proper location and are not mixed with ranges from another location.
+
+4. Export to CSV:
+    Export the processed data to a CSV file.
+    The CSV file should have the following structure:
+    Line 4: show location / frames to fix
+    Frames and frame ranges should be formatted as follows:
+    Ranges: /filesystem/Dune2/PartA/1920x1080 32-35
+    Individual frames: /filesystem/Dune2/PartA/1920x1080 41
+
+Criteria:
+    Correctly Imports Files
+        The script must successfully import the data from both Baselight_export.txt and Xytech.txt.
+
+    Parses Data Correctly:
+        The script must correctly parse the data, identifying key information and handling any errors in the data.
+    
+    Correct File Name Swapping:
+        The script must correctly replace local file system paths with facility storage paths.
+    
+    Correct Frame Ranges:
+        The script must ensure that frame ranges and individual frames are correctly ordered and not mixed with frames from different locations.
+    
+    Correct Export to CSV with Correct Data:
+        The script must export the processed data to a CSV file with the correct structure and data.
+
+
+Notes:
+The local paths are from the Baselight_export.txt file. These are paths that color correctors prefer to use due to bandwidth issues.
+
+The facility paths are from the Xytech.txt file. These paths represent the facility storage locations where the files should be stored or processed. This is the source of the shareholder's requests.
+
+
+Manual Process:
+    Without automation, the process would involve the following steps, done manually:
+
+    Data Import:
+        Manually open and read the contents of Baselight_export.txt and Xytech.txt using a text editor or spreadsheet software.
+    
+    Data Parsing:
+        Manually identify and extract paths and frames from Baselight_export.txt.
+        Manually identify facility paths from Xytech.txt.
+    
+    Data Processing:
+        Manually match each local path from Baselight_export.txt with the corresponding facility path from Xytech.txt.
+        Manually replace each local path with its corresponding facility path.
+        Manually order frames and frame ranges correctly.
+        Handle errors and <null> or <err> entries manually.
+    
+    Data Export:
+        Manually create a new CSV file.
+        Manually enter the processed data into the CSV file, ensuring the correct format.
+        Tasks Involved in Manual Process
+    
+    Reading Files:
+        Open Baselight_export.txt and Xytech.txt in a text editor.
+        Copy the contents to a working document or spreadsheet.
+    
+    Extracting Data:
+        Identify and copy local paths and frames from Baselight_export.txt.
+        Identify and copy facility paths from Xytech.txt.
+    
+    Matching and Replacing Paths:
+        For each local path, manually search for its corresponding facility path in Xytech.txt.
+        Replace local paths with facility paths in the working document.
+    
+    Ordering Frames:
+        Manually sort the frames and frame ranges in numerical order.
+        Ensure that frames are grouped correctly by location.
+    
+    Handling Errors:
+        Identify and address errors such as <null> or <err> entries.
+        Make decisions on how to handle these errors manually.
+    
+    Creating CSV:
+        Open a spreadsheet software or a text editor to create a new CSV file.
+        Manually enter the header information.
+        Manually enter the processed data, ensuring it follows the required format.
+    
+    Time and Error Considerations:
+        Time-Consuming: Manual processing is extremely time-consuming, especially for large data sets. Each step requires careful attention to detail, which can take hours or even days depending on the data size.
+        Error-Prone: Manual processes are susceptible to human error. Typing mistakes, incorrect matches, and formatting errors are common risks.
+        Consistency: Ensuring consistency across multiple data points and files is challenging manually. Automation ensures uniformity and consistency in data processing.
+        Benefits of Automation
+        Efficiency: Automation significantly speeds up the process, reducing it from hours or days to minutes.
+        Accuracy: Automated scripts are less prone to errors compared to manual data handling.
+        Scalability: Automated solutions can handle larger data sets more effectively than manual processes.
+        Consistency: Ensures that all data is processed uniformly and consistently, reducing the risk of discrepancies.
+    
+    Conclusion:
+        By automating this process, you save a considerable amount of time and effort, reduce the likelihood of errors, and ensure a consistent and reliable outcome. The automation script reads, parses, processes, 
+        and exports the data with minimal human intervention, making the entire workflow more efficient and accurate.
+
+
+
+
+Criteria:
+    Xytech Data Insertion:
+        Inserts workorder number and locations from the Xytech file into a MySQL database.
+    
+    Baselight Data Insertion:
+        Inserts folders and their associated frames, in sorted order, from the Baselight file into the database.
+
+    Calls the populated database to find all the ranges that fall in the length of the video.
+
+    Must correctly process the time code of the video and convert frame ranges to time code in order to find ranges that fall with the video length
+
+    Generates thumbnails (96 x 74) by calculating the center of each frame range.
+
+    Writes data to an XLS file with columns for Location, Frames to Fix, Timecode, and Thumbnail.
+
+    Renders video shots for each frame range.
+
+    Uploads the shots to Frame.io using their API.
+
+
+
+
+The Four Manual Positions We Are Automating:
+    --xytech:
+        Inserts the workorder number and all locations from the Xytech file into the database.
+        Automation Benefit: Eliminates the need to manually input workorder numbers and locations into the database, ensuring accuracy and saving time.
+
+    --baselight:
+        Inserts the folders and associated frames from the Baselight file into the database, sorted in ascending order.
+        Automation Benefit: Automates the tedious process of sorting frames and entering them into the database, ensuring data integrity and consistency.
+
+    --process:
+        Retrieves and stores database data into dictionaries.
+        Swaps Baselight suffix locations with corresponding Xytech locations.
+        Creates tuples of swapped file locations and frames, sorting them.
+        Groups sorted frames into ranges, associates with file locations.
+        Extracts the video’s timecode using FFmpeg.
+        Converts frame ranges to timecodes (HH:MM
+        .MS) at 60 fps.
+        Stores Location, Frames to Fix, and Timecode in a list.
+        Automation Benefit: Automates the complex process of analyzing and sorting video frames, generating accurate frame ranges, and converting them to timecodes, reducing errors and manual effort.
+
+    --process and --output:
+        Writes data to an XLS file with columns for Location, Frames to Fix, Timecode, and Thumbnail.
+        Generates thumbnails by calculating the center of each frame range.
+        Renders video shots for each frame range.
+        Uploads the shots to Frame.io using their API.
+        Automation Benefit: Streamlines the creation of detailed reports, thumbnail generation, and video shot rendering, as well as automating the upload process to Frame.io, ensuring timely and efficient delivery of processed data.
