@@ -110,3 +110,6 @@
         Renders video shots for each frame range.
         Uploads the shots to Frame.io using their API.
         **Automation Benefit:** Streamlines the creation of detailed reports, thumbnail generation, and video shot rendering, as well as automating the upload process to Frame.io, ensuring timely and efficient delivery of processed data.
+
+data_to_csv.py
+  Reads data from Xytech and Baselight, processes the data, performs the necessary swaps, sorts the frames and frame ranges in order each associated with a location, and writes the locations with their frames to fix in a csv file called output.csv in ascending order.
