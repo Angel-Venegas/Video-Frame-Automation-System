@@ -556,8 +556,8 @@ On Windows terminal type "where python" and navigate to that directory to find c
 '''  
 
 def upload_to_frameio():
-    ACCESS_TOKEN = 'fio-u-RrFeR3XyaJd-kuX1ehTrTAaS6O-NzYXU-6PwB8LiZMSPsfO2FhwZMPhEclxp2yZc'
-    PROJECT_ID = '329b5bf5-0d16-481a-a97b-cf57447b5db9'
+    ACCESS_TOKEN = ''
+    PROJECT_ID = ''
     FOLDER_PATH = 'Shots To Fix'
 
     headers = {
