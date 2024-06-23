@@ -87,11 +87,11 @@
 **The Four Manual Positions We Are Automating:**
     --xytech:
         Inserts the workorder number and all locations from the Xytech file into the database.
-        Automation Benefit: Eliminates the need to manually input workorder numbers and locations into the database, ensuring accuracy and saving time.
+        **Automation Benefit:** Eliminates the need to manually input workorder numbers and locations into the database, ensuring accuracy and saving time.
 
     --baselight:
         Inserts the folders and associated frames from the Baselight file into the database, sorted in ascending order.
-        Automation Benefit: Automates the tedious process of sorting frames and entering them into the database, ensuring data integrity and consistency.
+        **Automation Benefit:** Automates the tedious process of sorting frames and entering them into the database, ensuring data integrity and consistency.
 
     --process:
         Retrieves and stores database data into dictionaries.
@@ -102,11 +102,11 @@
         Converts frame ranges to timecodes (HH:MM
         .MS) at 60 fps.
         Stores Location, Frames to Fix, and Timecode in a list.
-        Automation Benefit: Automates the complex process of analyzing and sorting video frames, generating accurate frame ranges, and converting them to timecodes, reducing errors and manual effort.
+        **Automation Benefit**: Automates the complex process of analyzing and sorting video frames, generating accurate frame ranges, and converting them to timecodes, reducing errors and manual effort.
 
     --process and --output:
         Writes data to an XLS file with columns for Location, Frames to Fix, Timecode, and Thumbnail.
         Generates thumbnails by calculating the center of each frame range.
         Renders video shots for each frame range.
         Uploads the shots to Frame.io using their API.
-        Automation Benefit: Streamlines the creation of detailed reports, thumbnail generation, and video shot rendering, as well as automating the upload process to Frame.io, ensuring timely and efficient delivery of processed data.
+        **Automation Benefit:** Streamlines the creation of detailed reports, thumbnail generation, and video shot rendering, as well as automating the upload process to Frame.io, ensuring timely and efficient delivery of processed data.
