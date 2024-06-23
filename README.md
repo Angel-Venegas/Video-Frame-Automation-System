@@ -87,7 +87,7 @@
 **The Four Manual Positions We Are Automating:**
     --xytech:
         Inserts the workorder number and all locations from the Xytech file into the database.
-        *Automation Benefit:* Eliminates the need to manually input workorder numbers and locations into the database, ensuring accuracy and saving time.
+        **Automation Benefit:** Eliminates the need to manually input workorder numbers and locations into the database, ensuring accuracy and saving time.
 
     --baselight:
         Inserts the folders and associated frames from the Baselight file into the database, sorted in ascending order.
