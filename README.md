@@ -85,6 +85,7 @@
         5. Lastly, iterate over all of the shots to fix and upload them to frame.io using their API.
 
 **The Four Manual Positions We Are Automating:**
+
     --xytech:
         Inserts the workorder number and all locations from the Xytech file into the database.
         Automation Benefit: Eliminates the need to manually input workorder numbers and locations into the database, ensuring accuracy and saving time.
