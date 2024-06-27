@@ -92,7 +92,7 @@
 
     --baselight:
         Inserts the folders and associated frames from the Baselight file into the database, sorted in ascending order.
-        _Automation Benefit_: Automates the tedious process of sorting frames and entering them into the database, ensuring data integrity and consistency.
+        <u>Automation Benefit</u>: Automates the tedious process of sorting frames and entering them into the database, ensuring data integrity and consistency.
 
     --process:
         Retrieves and stores database data into dictionaries.
